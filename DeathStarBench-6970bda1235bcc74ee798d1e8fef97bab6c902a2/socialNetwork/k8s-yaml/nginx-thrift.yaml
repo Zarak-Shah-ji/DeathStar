@@ -1,0 +1,92 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    app-name: nginx-thrift
+    death-star-project: social-network
+  name: nginx-thrift
+  namespace: social-network
+spec: 
+  ports: 
+    - "8080:8080"
+  selector: 
+    app-name: nginx-thrift
+    death-star-project: social-network
+  type: NodePort
+
+
+    
+--- 
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-thrift
+      labels: 
+        app-name: nginx-thrift
+        death-star-project: social-network
+        #app-name: nginx-thrift
+      #name: nginx-thrift
+      namespace: social-network
+    spec: 
+      replicas: 1
+      selector: 
+        matchLabels: 
+          app-name: nginx-thrift
+          death-star-project: social-network
+          #app-name: nginx-thrift
+      template: 
+        metadata: 
+          labels:
+            death-star-project: social-network
+            app-name: nginx-thrift
+          name: nginx-thrift
+        spec: 
+          containers:
+            - name: nginx-thrift
+              image: "yg397/openresty-thrift:xenial"
+              #name: nginx-thrift
+              env:
+              - name: COLLECTOR_ZIPKIN_HTTP_PORT
+                value: "9411"
+              ports: 
+                - containerPort: 8080
+              volumeMounts: 
+                - 
+                  mountPath: /usr/local/openresty/nginx/lua-scripts
+                  name: lua-scripts
+                - 
+                  mountPath: /usr/local/openresty/nginx/pages
+                  name: pages
+                - 
+                  mountPath: /usr/local/openresty/nginx/conf/nginx
+                  name: nginx-conf
+                - 
+                  mountPath: /usr/local/openresty/nginx/jaeger-config
+                  name: jaeger-config-json
+                - 
+                  mountPath: /gen-lua
+                  name: gen-lua
+          restartPolicy: Always
+          volumes: 
+            - name: lua-scripts
+              hostPath: 
+                path: /home/user1/DeathStarBench-6970bda1235bcc74ee798d1e8fef97bab6c902a2/socialNetwork/nginx-web-server/lua-scripts-k8s
+              #name: lua-scripts
+            - name: pages
+              hostPath: 
+                path: /home/user1/DeathStarBench-6970bda1235bcc74ee798d1e8fef97bab6c902a2/socialNetwork/nginx-web-server/pages
+              #name: pages
+            - name: nginx-conf
+              hostPath: 
+                path: /home/user1/DeathStarBench-6970bda1235bcc74ee798d1e8fef97bab6c902a2/socialNetwork/nginx-web-server/conf/nginx-k8s.conf
+              #name: nginx-conf
+            - name: jaeger-config-json
+              hostPath: 
+                path: /home/user1/DeathStarBench-6970bda1235bcc74ee798d1e8fef97bab6c902a2/socialNetwork/nginx-web-server/jaeger-config
+              #name: jaeger-config-json
+            - name: gen-lua
+              hostPath: 
+                path: /home/user1/DeathStarBench-6970bda1235bcc74ee798d1e8fef97bab6c902a2/socialNetwork/gen-lua
+              #name: gen-lua
+    
