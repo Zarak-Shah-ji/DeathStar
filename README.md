@@ -1,1 +1,1 @@
-# DeathStarbench with support for kubernetes using minikube.
+# DeathStarbench-social-network with support for kubernetes using minikube.
