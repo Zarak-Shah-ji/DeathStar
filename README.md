@@ -1,3 +1,3 @@
 # DeathStarbench-social-network with support for kubernetes using minikube.
 
-![alt text](https://github.com/zarak-shahjee/DeathStar/images/master/Data.png?raw=true)
+<img src="/path/to/img.jpg" alt="Alt text" title="Optional title">
