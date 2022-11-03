@@ -7,4 +7,4 @@
 
 <img src="/images/Deep.png" alt="Alt text" title="Optional title">
 
-<img src="/images/Method.png" alt="Alt text" title="Optional title">
+<img src="/images/Methods.png" alt="Alt text" title="Optional title">
