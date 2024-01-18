@@ -1,6 +1,7 @@
     # depends_on:
     #   - write-home-timeline-rabbitmq
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
