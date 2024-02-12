@@ -35,7 +35,7 @@ class GrizzlyConfiguration():
     This class is called to configure and conduct an application layer
     DoS test.
 
-    More information on how to configure the tool can be found on:
+    More information on how to configure the tool can be found on: 
     https://github.com/netflix-skunkworks/repulsive-grizzly
     '''
     def __init__(self):
